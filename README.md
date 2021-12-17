@@ -3,7 +3,7 @@ A python script that watches a websites RSS feed and sends it to all signal acco
 This could be understood as a signal (news) channel. 
 The subscribers are expected to be stored in a SQLite database file. Therefore this project is linked to [signal-cli-bot](https://github.com/yjeanrenaud/signal-cli-bot) and depends on [signal-cli](https://github.com/AsamK/signal-cli).
 
-##Installation
+## Installation
 0. Have set up and configured [signal-cli](https://github.com/AsamK/signal-cli) as a dbus service. See the wiki overthere for more information.
 1. Install dependencies
 `sudo apt-get install python3 pythjon3-pip`
