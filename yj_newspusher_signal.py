@@ -6,7 +6,8 @@
 
 print(".oO0 Passive PocketPC.ch News Pusher for signal-cli 0Oo.")
 
-dbFilename= 'signal.db'
+import os,sys
+dbFilename= os.path.abspath(os.path.dirname(sys.argv[0]))+'/signal.db'
 
 import os, sys
 from requests import head, get, post
