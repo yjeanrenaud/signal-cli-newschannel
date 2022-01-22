@@ -4,9 +4,9 @@ set -e
 
 echo "Installing yj_newspusher_signal\n"
 sudo cp yj_newspusher_signal.py /usr/local/bin/
-sudo chmod a+x /usr/local/bin/ yj_newspusher_signal.py
+sudo chmod a+x /usr/local/bin/yj_newspusher_signal.py
 sudo cp  yj_newspusher_signal_wrapper.sh /usr/local/bin/
-sudo chmod a+x /usr/local/bin/ yj_newspusher_signal_wrapper.sh
+sudo chmod a+x /usr/local/bin/yj_newspusher_signal_wrapper.sh
 
 
 echo "installing init.d script\n"
