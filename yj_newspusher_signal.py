@@ -16,7 +16,7 @@ from feedparser import parse
 from os import system
 from pprint import pprint
 import re
-import urllib.request
+from PIL import Image
 
 def yj_send_signals (strNews):
 	from pydbus import SystemBus
@@ -100,7 +100,8 @@ while 1:
                         regex = r"src=\"([a-zA-Z0-9:/?\.\-]*)\""
                         test_str=(d.entries[0].description)
                         matches = re.search(regex, test_str, re.MULTILINE)
-                        urllib.request.urlretrieve(matches[1],"/tmp/signal-thumb.png") #because matches[0] is the whole match, not the group
+			img = Image.open(requests.get(matches[1], stream = True).raw) #because matches[0] is the whole match, not the group
+                        img.save("/tmp/signal-thumb.png") # makes sure the file type is correct
 			#attachments need to be files anyway, so we don't send it to the function
 			yj_send_signals(strNews) #now broadcast!
 
