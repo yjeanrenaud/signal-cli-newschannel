@@ -15,6 +15,8 @@ from time import sleep, struct_time # we won't need all time functions!
 from feedparser import parse
 from os import system
 from pprint import pprint
+import re
+import urllib.request
 
 def yj_send_signals (strNews):
 	from pydbus import SystemBus
@@ -39,12 +41,12 @@ def yj_send_signals (strNews):
 	if len(results)>1:
 		#send to each subscriber
 		for subscriber in results:
-			signal.sendMessage(strNews, [], ["\'"+str(subscriber[0])+"\'"])
+			signal.sendMessage(strNews, ['/tmp/signal-thumb.png'], ["\'"+str(subscriber[0])+"\'"])
 			print("signal sent to "+str(subscriber[0]))
 	else:
 		# we have only one subscriber, so send only to that one
-		signal.sendMessage(strNews, [], ["\'"+str(results[0][0])+"\'"])
-		print("signal sent to "+str(subscriber[0]))
+		signal.sendMessage(strNews, ['/tmp/signal-thumb.png'], ["\'"+str(results[0][0])+"\'"])
+		print("signal sent to "+str(results[0][0]))
 		
 	print("all signals sent")
 	return
@@ -94,8 +96,13 @@ while 1:
 			strNews=d.entries[0].title +"\n"+ d.entries[0].link
 			print("NEWS\n###\n"+strNews+"\nid="+d.entries[0].id+"\n")
 			print(str(datetime.datetime.now())+"...")
-			#now broadcast!
-			yj_send_signals(strNews)
+			#get the thumbnail image
+                        regex = r"src=\"([a-zA-Z0-9:/?\.\-]*)\""
+                        test_str=(d.entries[0].description)
+                        matches = re.search(regex, test_str, re.MULTILINE)
+                        urllib.request.urlretrieve(matches[1],"/tmp/signal-thumb.png") #because matches[0] is the whole match, not the group
+			#attachmentsneet to be files anyway, so we don't send it to the function
+			yj_send_signals(strNews) #now broadcast!
 
 		else:
 			print("no NEWS today\noldID=newID="+oldID)
