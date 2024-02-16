@@ -101,7 +101,7 @@ while 1:
                         test_str=(d.entries[0].description)
                         matches = re.search(regex, test_str, re.MULTILINE)
                         urllib.request.urlretrieve(matches[1],"/tmp/signal-thumb.png") #because matches[0] is the whole match, not the group
-			#attachmentsneet to be files anyway, so we don't send it to the function
+			#attachments need to be files anyway, so we don't send it to the function
 			yj_send_signals(strNews) #now broadcast!
 
 		else:
