@@ -9,11 +9,11 @@ print(".oO0 Passive PocketPC.ch News Pusher for signal-cli 0Oo.")
 import os,sys
 dbFilename= os.path.abspath(os.path.dirname(sys.argv[0]))+'/signal.db'
 
-import os, sys
 from requests import head, get, post
 from time import sleep, struct_time # we won't need all time functions!
 from feedparser import parse
 from os import system
+import datetime
 from pprint import pprint
 import re
 from PIL import Image
@@ -58,7 +58,6 @@ else:
 	print("Datenbank-Datei \""+dbFilename+"\" NICHT vorhanden!?")
 	sys.exit()
 	
-import datetime
 print(str(datetime.datetime.now()))
 #init the sources' config
 characters = head('https://www.pocketpc.ch/magazin/feed/').headers['content-length']
@@ -100,7 +99,7 @@ while 1:
                         regex = r"src=\"([a-zA-Z0-9:/?\.\-]*)\""
                         test_str=(d.entries[0].description)
                         matches = re.search(regex, test_str, re.MULTILINE)
-			img = Image.open(requests.get(matches[1], stream = True).raw) #because matches[0] is the whole match, not the group
+			img = Image.open(get(matches[1], stream = True).raw) #because matches[0] is the whole match, not the group
                         img.save("/tmp/signal-thumb.png") # makes sure the file type is correct
 			#attachments need to be files anyway, so we don't send it to the function
 			yj_send_signals(strNews) #now broadcast!
