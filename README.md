@@ -1,6 +1,8 @@
 # signal-cli-newschannel
 A python script that watches a websites RSS feed and sends it to all signal accounts that subscribed it.
-This could be understood as a signal (news) channel. 
+This could be understood as a signal (news) channel.
+It now also includes the posts first image as an attachment in the signal message.
+
 The subscribers are expected to be stored in a SQLite database file. Therefore this project is linked to [signal-cli-bot](https://github.com/yjeanrenaud/signal-cli-bot) and depends on [signal-cli](https://github.com/AsamK/signal-cli).
 
 ## Installation and Usage
