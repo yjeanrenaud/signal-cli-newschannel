@@ -3,6 +3,7 @@
 # It gets the latest RSS feed entry and pushes it to all subscribers in the SQlite DB. 
 # The subscriber db is filled by signal-cli-bot (https://github.com/yjeanrenaud/signal-cli-bot)
 # 2020 Yves Jeanrenaud for PocketPC.ch 
+# 2024 now includes the posts first image as attachment to the signal message
 
 print(".oO0 Passive PocketPC.ch News Pusher for signal-cli 0Oo.")
 
