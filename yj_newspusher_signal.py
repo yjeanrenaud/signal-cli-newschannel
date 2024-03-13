@@ -97,7 +97,7 @@ while 1:
 			print("NEWS\n###\n"+strNews+"\nid="+d.entries[0].id+"\n")
 			print(str(datetime.datetime.now())+"...")
 			#get the thumbnail image
-                        regex = r"src=\"([a-zA-Z0-9:/?\.\-]*)\""
+                        regex = r"src=\"([a-zA-Z0-9\/\.?\_\-\:]*)\""
                         test_str=(d.entries[0].description)
                         matches = re.search(regex, test_str, re.MULTILINE)
 			img = Image.open(get(matches[1], stream = True).raw) #because matches[0] is the whole match, not the group
